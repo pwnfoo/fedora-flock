@@ -1,0 +1,8 @@
+Username		Category		Count		Percentage
+downey		Pagure		1		16.67%
+downey		Fas		1		16.67%
+downey		Irc		2		33.33%
+downey		Trac		2		33.33%
+
+
+ Total : 6 
