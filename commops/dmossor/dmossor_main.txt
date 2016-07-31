@@ -1,5 +1,0 @@
-Username		Category		Count		Percentage
-dmossor		Bugzilla		3		100.0%
-
-
- Total : 3 

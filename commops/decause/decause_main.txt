@@ -1,5 +1,0 @@
-Username		Category		Count		Percentage
-decause		Trac		5		100.0%
-
-
- Total : 5 

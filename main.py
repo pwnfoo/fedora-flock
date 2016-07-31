@@ -26,7 +26,6 @@ def interactive_input(args):
 
 def assign_values(args):
     stats.values['user'] = str(args.user).lower()
-    stats.values['delta'] = int(args.weeks) * 604800
     stats.category = args.category.lower()
     stats.start = args.start
     stats.end = args.end
@@ -49,7 +48,6 @@ def add_arguments(parser):
     parser.add_argument('--output', '-o', help="Output name", default='stats')
     parser.add_argument('--start', '-s', help="Start Date", default='')
     parser.add_argument('--user', '-u', help='FAS username')
-    parser.add_argument('--weeks', '-w', help='Time in weeks', default=1)
 
 
 def generator(args, mode, user):

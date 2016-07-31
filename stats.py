@@ -44,28 +44,15 @@ def return_json():
     total_pages = 1
 
     # Only pull the values from datagrepper if it's the first run
-    if len(unicode_json) == 0 :
-        if values['user']:
-            print('[*] Grabbing datagrepper values for user ' + values['user'] + '..')
-        # If the user is set as all, we filter it using the provided category,
-        # if any
-        if category != '' and values['user'] == 'all':
-            values['category'] = category
-        if start != '' and end != '':
+    if True:
+
             values['start'] = return_epoch(start)
             values['end'] = return_epoch(end)
-            del(values['delta'])
 
 
         # If the user value is passed as all, remove it from the dict and pass
         # arguments
-        if values['user'] == 'all':
-            temp_dict = dict(values)
-            del(temp_dict['user'])
-            print("In here!!!\n", temp_dict)
-            response = requests.get(baseurl, params=temp_dict)
-        else:
-            response = requests.get(baseurl, params=values)
+        response = requests.get(baseurl, params=values)
         unicode_json = json.loads(response.text)
         total_pages = unicode_json['pages']
         print ("Total pages found : " + str(total_pages))
@@ -80,7 +67,7 @@ def return_json():
             for activity in paginated_json['raw_messages']:
                 unicode_json['raw_messages'].append(activity)
             total_pages -= 1
-        values['page'] = 1
+        values['page'] += 1
     return unicode_json
 
 # Analyzes the JSON and return categories present as a list.

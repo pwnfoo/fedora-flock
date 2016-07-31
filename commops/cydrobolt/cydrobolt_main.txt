@@ -1,5 +1,0 @@
-Username		Category		Count		Percentage
-cydrobolt		Copr		17		100.0%
-
-
- Total : 17 

@@ -1,5 +1,0 @@
-Username		Category		Count		Percentage
-dhanesh95		Trac		1		100.0%
-
-
- Total : 1 

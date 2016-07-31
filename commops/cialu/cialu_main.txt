@@ -1,6 +1,0 @@
-Username		Category		Count		Percentage
-cialu		Bugzilla		1		33.33%
-cialu		Mailman		2		66.67%
-
-
- Total : 3 

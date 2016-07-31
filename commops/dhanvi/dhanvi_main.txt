@@ -1,6 +1,0 @@
-Username		Category		Count		Percentage
-dhanvi		Planet		2		33.33%
-dhanvi		Bugzilla		4		66.67%
-
-
- Total : 6 

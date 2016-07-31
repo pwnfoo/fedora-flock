@@ -1,7 +1,0 @@
-Username		Category		Count		Percentage
-fale		Bugzilla		29		49.15%
-fale		Irc		4		6.78%
-fale		Buildsys		26		44.07%
-
-
- Total : 59 

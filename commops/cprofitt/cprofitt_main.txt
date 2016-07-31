@@ -1,7 +1,0 @@
-Username		Category		Count		Percentage
-cprofitt		Wiki		1		20.0%
-cprofitt		Planet		1		20.0%
-cprofitt		Irc		3		60.0%
-
-
- Total : 5 
