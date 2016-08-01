@@ -14,7 +14,6 @@ values['user'] = None
 values['delta'] = 604800
 values['rows_per_page'] = 100
 values['not_category'] = 'meetbot'
-values['topic'] = 'org.fedoraproject.prod.fas.user.create'
 values['page'] = 1
 values['size'] = 'small'
 category = ''
@@ -38,6 +37,19 @@ def return_epoch(time):
 
 # Checks if unicode_json is empty, pulls datagrepper values and returns
 # the json
+
+def return_userjson():
+
+    global unicode_json
+    # Only pull the values from datagrepper if it's the first run
+    if True:
+        # If the user value is passed as all, remove it from the dict and pass
+        # arguments
+        response = requests.get(baseurl, params=values)
+        unicode_json = json.loads(response.text)
+        response = requests.get(baseurl, params=values)
+    return unicode_json
+
 
 
 def return_json():
@@ -93,15 +105,32 @@ def return_users():
     json.dump(user_list, open(filename + '.json','w'))
 
 def find_inactive_users(name):
+    user_json = {}
+    slow_pickup = list()
+    global values
+    del(values['delta'])
     print("********FILENAME : ", name, "  *****************")
     with open("dumps/" + str(name) + '.json') as data_file:
         data = json.load(data_file)
-    account = UserParser()
     data_new = dict(data)
     for user in data.keys():
-        try:
-            if not account.user_active(user):
-                del(data_new[user])
-        except KeyError:
-            print ("Deleted ", user)
-    json.dump(data_new, open(name + '_updated.json','w'))
+        values['user'] = user
+        values['start'] = int(data[user]) +  2592000
+        values['end'] = int(data[user]) + (6 * 2592000)
+        user_json = return_userjson()
+        if not user_json['count']:
+            values['start'] = values['end']
+            values['end'] = values['end'] + (12 * 2592000)
+            user_json = return_userjson()
+            if not user_json['count']:
+                try:
+                    print("User ", user, "is inactive!")
+                    del(data_new[user])
+                except KeyError:
+                    pass
+            else:
+                slow_pickup.append(user)
+
+    json.dump(user_list, open(name + '_final.json','w'))
+    print("Total Active : ", len(data_new.keys()))
+    print("Slow pickup : ", len(slow_pickup))
