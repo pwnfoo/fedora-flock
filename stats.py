@@ -83,7 +83,10 @@ def return_users():
     unicode_json = return_json()
     print("[*] Identifying Users..")
     for activity in unicode_json['raw_messages']:
-        print(activity['msg']['user'])
-        user_list[activity['msg']['user']] = activity['timestamp']
+	try:
+        	print(activity['msg']['user'])
+        	user_list[activity['msg']['user']] = activity['timestamp']
+	except TypeError:
+		user_list[activity['msg']['user']['username']] = activity['timestamp']
         print(len(user_list.keys()))
     json.dump(user_list, open(filename + '.json','w'))
