@@ -59,7 +59,9 @@ def generator(args, mode, user):
 
     # Else, use the argparse values. No arguments is handled by argparse.
     assign_values(args)
-    stats.return_users()
+    #stats.return_users()
+    for i in range(2012, 2017):
+        stats.find_inactive_users(i)
 
 def main():
     # fedmsg config

@@ -6,6 +6,7 @@ import calendar
 import json
 import requests
 from collections import Counter
+from userStatus import UserParser
 
 # This dictionary will be passed as param to requests later
 values = dict()
@@ -90,3 +91,15 @@ def return_users():
 		user_list[activity['msg']['user']['username']] = activity['timestamp']
         print(len(user_list.keys()))
     json.dump(user_list, open(filename + '.json','w'))
+
+def find_inactive_users(name):
+    with open("dumps/" + str(name) + '.json') as data_file:
+        data = json.load(data_file)
+    account = UserParser()
+    data_new = dict(data)
+    for user in data.keys():
+        print ("Checking ", user)
+        if not account.user_active(user):
+            del(data_new[user])
+            print (data_new[user],  " deleted!")
+    json.dump(data_new, open(name + '_updated.json','w'))
