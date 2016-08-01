@@ -84,6 +84,6 @@ def return_users():
     print("[*] Identifying Users..")
     for activity in unicode_json['raw_messages']:
         print(activity['msg']['user'])
-        user_list[activity['msg']['user']['username']] = activity['timestamp']
+        user_list[activity['msg']['user']] = activity['timestamp']
         print(len(user_list.keys()))
     json.dump(user_list, open(filename + '.json','w'))

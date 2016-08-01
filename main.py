@@ -34,7 +34,7 @@ def assign_values(args):
     stats.group = args.group
     stats.log = args.log
     output.mode = args.mode.lower()
-    output.filename = stats.filename =  args.output()
+    output.filename = stats.filename =  args.output
 
 
 def add_arguments(parser):
