@@ -93,13 +93,15 @@ def return_users():
     json.dump(user_list, open(filename + '.json','w'))
 
 def find_inactive_users(name):
+    print("********FILENAME : ", name, "  *****************")
     with open("dumps/" + str(name) + '.json') as data_file:
         data = json.load(data_file)
     account = UserParser()
     data_new = dict(data)
     for user in data.keys():
-        print ("Checking ", user)
-        if not account.user_active(user):
-            del(data_new[user])
-            print (data_new[user],  " deleted!")
+        try:
+            if not account.user_active(user):
+                del(data_new[user])
+        except KeyError:
+            print ("Deleted ", user)
     json.dump(data_new, open(name + '_updated.json','w'))
