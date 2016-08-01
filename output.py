@@ -21,6 +21,21 @@ cat = None
 
 
 # Gets a drawable object argument and renders an SVG Image of it.
+def draw_linechart_newuser():
+    line_chart = pygal.Line(x_title="Year", y_title="Number of FAS accounts")
+    line_chart.title = 'New FAS Accounts (2012 - 2016)'
+    line_chart.x_labels = map(str, [0, 2012, 2013, 2014, 2015, 2016])
+    line_chart.add('New Users',  [None, 445,5008,5227,5863,4846], dot_size = 8, width = 5)
+    line_chart.render_to_file("new_fas_users_line.svg")
+
+def draw_linechart_newuser():
+    line_chart = pygal.Line()
+    line_chart.title = 'New FAS Accounts (2012 - 2016)'
+    line_chart.x_labels = map(str, [0, 2012, 2013, 2014, 2015, 2016])
+    line_chart.add('New Users',  [None, 445,5008,5227,5863,4846], dot_size = 8, width = 5)
+    line_chart.render_to_png("new_fas_users_line.png")
+
+
 def draw_svg(graph_obj):
     if cat is None:
         fname = path + stats.values['user'] + '/' + filename + '_main' + '.svg'
